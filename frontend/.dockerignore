@@ -1,0 +1,12 @@
+# Ignora as dependências locais (elas serão instaladas DENTRO do contêiner)
+node_modules/
+
+# Ignora arquivos de build local
+dist/
+
+# Ignora arquivos do Git
+.git
+.gitignore
+
+# Ignora arquivos de ambiente local
+.env

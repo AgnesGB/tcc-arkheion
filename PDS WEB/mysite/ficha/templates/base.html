@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <title>{% block title %}Arkheion{% endblock %}</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #content {
+            flex: 1;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    </style>
+    {% block style %} {% endblock %}
+</head>
+<body class="has-background-white-bis">
+    <header> 
+        <div class="container">
+            <nav class="navbar is-light" role="navigation" aria-label="main navigation"> 
+                <div class="navbar-menu">
+                    <div class="navbar-start"> 
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-light" href="{% url 'index' %}">
+                                    <strong>Arkheion</strong>
+                                </a>
+                            </div>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-light" href="{% url 'personagens' %}">
+                                    Personagens
+                                </a>
+                            </div>
+                        </div>
+                        {% else %}
+                        <div class="navbar-item">
+                            <div class="buttons">
+                                <a class="button is-light" href="{% url 'login' %}">
+                                    Personagens
+                                </a>
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="navbar-end">
+                    <div class="navbar-item has-dropdown is-hoverable">
+                        <a class="navbar-link">
+                            <span class="icon is-large">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                    <title>account-circle</title>
+                                    <path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z" />
+                                </svg>
+                            </span>
+                            {% if user.is_authenticated %}
+                            <span>{{user.username}}</span>
+                            {% else %}
+                            <span>Usuário</span>
+                            {% endif %}
+                        </a>
+                        <div class="navbar-dropdown">
+                            {% if user.is_authenticated %}
+                                <a class="navbar-item" href="{% url 'visualizar_perfil' %}">
+                                    Editar Usuário
+                                </a>
+                                <a class="navbar-item" href="#" onclick="document.getElementById('logout-form').submit();">
+                                    Sair
+                                </a>
+                                <form id="logout-form" action="{% url 'logout' %}" method="post" style="display: none;">
+                                    {% csrf_token %}
+                                </form>
+                            {% else %}
+                                <a class="navbar-item" href="{% url 'login' %}">
+                                    Entrar
+                                </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container mt-5">
+            {% block conteudo %}
+            {% endblock %}
+        </div>
+    </section>
+</body>
+</html>

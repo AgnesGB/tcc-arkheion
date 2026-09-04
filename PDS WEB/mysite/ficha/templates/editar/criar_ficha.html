@@ -1,0 +1,125 @@
+{% extends "base.html" %}
+
+{% block title %}Criar Ficha - Arkheion{% endblock %}
+
+{% block conteudo %}
+    <h1 class="title">Criar Ficha</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <container class="columns is-multiline">
+            <div class="column is-half">
+                <div class="field">
+                    <label class="title is-5">Nome</label>
+                    <div class="control">
+                        <input class="input" type="text" name="nome" required>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="column is-half">
+                <div class="field">
+                    <label class="title is-5">Divindade</label>
+                    <div class="control">
+                        <div class="select">
+                            <select name="divindade" required>
+                                {% for divindade, nome in divindades %}
+                                    <option value="{{ divindade }}">{{ nome }}</option>
+                                {% endfor %}      
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </container>
+
+        <hr>
+
+        <div class="field">
+            <label class="title is-5">Raça</label>
+            <div class="control">
+                <div class="select">
+                    <select name="raca" required>
+                        {% for raca in racas %}
+                            <option value="{{ raca.id }}">{{ raca.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="field">
+            <label class="title is-5">Origem</label>
+            <div class="control">
+                <div class="select">
+                    <select name="origem" required>
+                        {% for origem in origens %}
+                            <option value="{{ origem.id }}">{{ origem.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="field">
+            <label class="title is-5">Classe</label>
+            <div class="control">
+                <div class="select">
+                    <select name="classe" required>
+                        {% for classe in classes %}
+                            <option value="{{ classe.id }}">{{ classe.nome }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <div class="field">
+            <label class="title is-5">Atributos</label>
+            <div class="columns">
+                {% for atributo in atributos %}
+                    <div class="column">
+                        <label class="label">{{ atributo.get_nome_display }}</label>
+                        <div class="control">
+                            <input class="input" type="number" name="atributo_{{ atributo.id }}" value="0" min="-10" required>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!--<div class="field">
+            <label class="label">Perícias</label>
+            <div class="control">
+                {% for pericia in pericias %}
+                    <label class="checkbox">
+                        <input type="checkbox" name="pericias" value="{{ pericia.id }}">
+                        {{ pericia.get_nome_display }}
+                    </label>
+                {% endfor %}
+            </div>
+        </div>-->
+
+        <div class="field">
+            <div class="control">
+                <div class="level">
+                    <!-- Alinhamento à esquerda -->
+                    <div class="level-left">
+                        <a href="{% url 'personagens' %}" class="button is-medium is-danger is-dark">Cancelar</a>
+                    </div>
+        
+                    <!-- Alinhamento à direita -->
+                    <div class="level-right">
+                        <button class="button is-medium is-dark" type="submit">Criar Ficha</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}

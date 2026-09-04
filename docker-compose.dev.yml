@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_DB: arkheion_db
+      POSTGRES_USER: arkheion_user
+      POSTGRES_PASSWORD: arkheion_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - arkheion_network
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    env_file:
+      - .env.backend
+    volumes:
+      - ./arkheion:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    networks:
+      - arkheion_network
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: ../Dockerfile.frontend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    networks:
+      - arkheion_network
+    environment:
+      - VITE_API_URL=http://backend:8000
+
+volumes:
+  postgres_data:
+
+networks:
+  arkheion_network:
+    driver: bridge

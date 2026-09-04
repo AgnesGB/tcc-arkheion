@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block title %}Adicionar habilidade - Arkheion{% endblock %}
+
+{% block conteudo %} 
+    <div class="block">
+        <div class="level"> <!--Título e botão criar personagem-->
+            <div class="level-left"> <!--Título-->
+                <h1 class="title is-4">Adicionar habilidade:</h1> 
+            </div>
+            <!--<div class="level-right">
+                <div class="buttons" >
+                    <a class="button is-dark">Criar habilidade</a>
+                </div>
+            </div>-->
+        </div>
+
+        <form method="GET" action="{% url 'add_habilidade' ficha.id %}"> <!--Barra de pesquisa por nome da habilidade-->
+            <div class="field has-addons mt-5">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="q" placeholder="Digite o nome de uma habilidade..." value="{{ query }}">
+                </div>
+                <div class="control">
+                    <button class="button is-dark" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+        <!--Habilidades-->
+
+        {% if habilidades %}
+
+        <div class="columns mt-5 is-multiline"> <!--Lista de habilidades-->
+            
+            {% for habilidade in habilidades %}
+                <div class="column is-one-third"> <!--Habilidade-->
+                    <div class="box is-flex is-flex-direction-column" style="height: 100%;"> 
+                        <div class="content" style="flex-grow: 1;">
+                            <div class="is-flex is-align-items-center is-justify-content-space-between mb-2">
+                                <div class="is-flex is-align-items-center">
+                                    <h3 class="title is-5 m-0">{{ habilidade.nome }}</h3>
+                                    <p class="ml-2 m-0">
+                                        {% if habilidade.ativo %}
+                                            <i>(Ativa)</i>
+                                        {% else %}
+                                            <i>(Passiva)</i>
+                                        {% endif %}
+                                    </p>
+                                </div>
+                            </div>
+                        
+                            <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                <li><strong class="title is-6">Origem da habilidade:</strong> {{habilidade.get_origem_display}}
+                                    {% if habilidade.raca_pers %}
+                                        ({{habilidade.raca_pers.nome}})
+                                    {% endif %}
+                                    {% if habilidade.origem_pers %}
+                                        ({{habilidade.origem_pers.nome}})
+                                    {% endif %}
+                                    {% if habilidade.classe_pers %}
+                                        ({{habilidade.classe_pers.nome}} {{habilidade.nivel_habilidade}})
+                                    {% endif %}
+                                </li>
+                                <li><strong class="title is-6">Descrição: </strong></li>
+                            </ul>
+                            <p>{{habilidade.descricao}}</p>
+                        </div>
+
+                        {% if habilidade in ficha.habilidades.all %}
+                                
+                            <div class = "level">
+                                <div class = "level-left"> <!-- Botão para remover a habilidade -->
+                                    <form method="POST" action="{% url 'remove_habilidade' ficha.id %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="habilidade_id" value="{{ habilidade.id }}">
+                                        <button class="button is-small is-danger is-dark" type="submit">
+                                            <span>Remover habilidade</span>
+                                        </button>
+                                    </form>
+                                </div>
+                                <div class="level-right">
+                                    <button class="button is-small is-dark" disabled> <!-- Botão desabilitado para adicionar a habilidade -->
+                                        <span>Habilidade já adicionada</span>
+                                    </button>
+                                </div>
+                            </div>
+                                
+                            {% else %} <!--Habilidade não está na aficha-->
+                                
+                            <form method="POST" action="{% url 'add_habilidade' ficha.id %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="habilidade_id" value="{{ habilidade.id }}">
+                                <div class="is-flex is-justify-content-flex-end">
+                                    <button class="button is-small is-dark" type="submit">
+                                        <span>Adicionar habilidade</span>
+                                    </button>
+                                </div>
+                            </form>
+                        {% endif %}
+
+                    </div>
+                </div>
+            {% endfor %}
+            
+        </div>
+
+        {% else %}
+
+            <p>Nenhuma habilidade encontrada...</p>
+
+        {% endif %}
+
+        <section class="level">
+            <div class="level-left">
+                <div class="field">
+                    <div class="control">
+                        <a href="{% url 'ficha_habilidades' ficha.id %}" class="button is-medium is-light">Voltar</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </div>
+{%endblock%}

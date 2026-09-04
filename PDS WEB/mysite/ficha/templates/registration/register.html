@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <title>Registro</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <style>
+        body {
+            background-image: url("https://source.unsplash.com/1920x1080/?city,night");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            height: 100vh;
+            position: relative;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Escurecimento do fundo */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .register-container {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<section class="section register-container">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-half">
+        <div class="box">
+          <h2 class="title has-text-centered">Registro</h2>
+          <form method="post">
+            {% csrf_token %}
+            
+            <!-- Exibe os campos do formulário com estilização do Bulma -->
+            {% for field in form %}
+              <div class="field">
+                <label class="label">{{ field.label_tag }}</label>
+                <div class="control">
+                  {{ field }}
+                </div>
+                {% if field.help_text %}
+                  <p class="help">{{ field.help_text }}</p>
+                {% endif %}
+                {% for error in field.errors %}
+                  <p class="help is-danger">{{ error }}</p>
+                {% endfor %}
+              </div>
+            {% endfor %}
+
+            <div class="field">
+              <div class="control">
+                <button type="submit" class="button is-primary is-fullwidth" style="background-color: black;">
+                  Registrar
+                </button>
+              </div>
+            </div>
+          </form>
+
+          <p class="has-text-centered">
+            Já tem uma conta? <a href="{% url 'login' %}" class="has-text-link">Entre aqui</a>.
+          </p>
+
+          <br>
+          <div>
+            <a href="{% url 'index' %}" class="button is-primary">Voltar</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>

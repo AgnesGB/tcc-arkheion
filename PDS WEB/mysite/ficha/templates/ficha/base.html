@@ -1,0 +1,613 @@
+{% extends "../base.html" %}
+
+{% block title %}Arkheion - {{ ficha.nome }}{% endblock %}
+
+{% block style %} 
+    <style>
+        .custom-bar-red {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: pink;
+        border-radius: 5px;
+        padding: 5px;
+        }
+        .custom-bar-red strong {
+        color: black;
+        font-weight: bold;
+        }
+        .custom-bar-red button {
+        background: transparent;
+        border: none;
+        font-size: 1.2em;
+        color: black;
+        margin: 0 5px;
+        }
+        .custom-bar-red button:hover {
+        cursor: pointer;
+        color: #363636;
+        }
+        .custom-bar-green {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgreen;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .custom-bar-green strong {
+            color: black;
+            font-weight: bold;
+        }
+        .custom-bar-green button {
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: black;
+            margin: 0 5px;
+        }
+        .custom-bar-green button:hover {
+            cursor: pointer;
+            color: #363636;
+        }
+        .custom-bar-blue {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+            border-radius: 5px;
+            padding: 5px;
+        }
+        .custom-bar-blue strong {
+            color: black;
+            font-weight: bold;
+        }
+        .custom-bar-blue button {
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: black;
+            margin: 0 5px;
+        }
+        .custom-bar-blue button:hover {
+            cursor: pointer;
+            color: #363636;
+        }
+        .input.is-transparent {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            color: black; /* Cor do texto dentro do input */
+        }
+        .input.is-transparent:focus {
+            border-bottom: 2px solid #00d1b2; /* Cor ao focar */
+            outline: none; /* Remove a borda padrão */
+        }
+    </style>
+{% endblock %}
+
+{%block conteudo %} 
+
+<div class="columns">
+    <div class="column is-one-third"> <!--Informações gerais-->
+        <div class="container">
+            <div class="box"> 
+                <article>
+                    <section> <!--Foto e Informações base-->
+                        <!--Nome, Origem, Classe, Nível, Raça e deus do personagem-->
+                        <div class="content">
+                            <div class="level">
+                                <div class="level-left">
+                                    <!-- Nome e nível do personagem -->
+                                    <strong class="title is-5">
+                                        {{ ficha.nome }} - Nível {{ ficha.nivel }}
+                                    </strong>
+                                </div>
+                            
+                                <!-- Botão para subir de nível -->
+                                <div class="level-right">
+                                    <button>
+                                        <a href="{% url 'escolher_subir_nivel' ficha.id %}" class="button is-primary is-small">
+                                            Subir de Nível
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <ul>
+                            <li><strong>Raça: </strong> 
+                                {% for raca in ficha.racas.all %}
+                                    {{ raca.nome }} {% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </li>
+                            <li><strong>Origem: </strong> 
+                                {% for origem in ficha.origens.all %}
+                                    {{ origem.nome }} {% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </li>
+                            <li><strong>Classe(s): </strong> 
+                                {% for nivel_classe in ficha.nivelclasseficha_set.all %}
+                                    {{ nivel_classe.classe.nome }} (Nível: {{ nivel_classe.nivel }}) {% if not forloop.last %},{% endif %}
+                                {% endfor %}
+                            </li>
+                            <li><strong>Divindade: </strong> {{ ficha.get_divindade_display }}</li>
+                        </ul>
+                    </section>
+
+                    <hr>
+
+                    <section> <!--Atributos-->
+                        <div class="container">
+                            <container class="level">
+                                <div class="level-left">
+                                    <strong class="title is-6">Atributos:</strong>
+                                </div>
+                                <div class="level-right">
+                                    <button>
+                                        <span class="icon">
+                                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Alterar Atributos</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                                        </span>
+                                    </button>
+                                </div>
+                            </container>
+                            
+                            {% if ficha.atributoficha_set.all %}
+                            <container class="columns mt-5 is-multiline">
+                                {% for atributo_ficha in ficha.atributoficha_set.all %}
+                                    <div class="column is-one-third has-text-centered">
+                                        <div class="box">
+                                            <span><strong>{{ atributo_ficha.atributo.get_nome_display }}</strong></span>
+                                            <input class="input has-text-centered" type="number" value="{{ atributo_ficha.valor }}" readonly>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            </container>
+                            {% else %}
+                                <div class="column is-full has-text-centered">
+                                    <p>Nenhum atributo cadastrado para esta ficha.</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </section>
+
+                    <hr>
+
+                    <section> <!--Barras de vida e mana-->
+                        <container class="level">
+                            <div class="level-left">
+                                <strong class="title is-6">Vida e Mana:</strong>
+                            </div>
+                        </container>
+
+                        <div class="container">
+                            <div class="column has-text-centered"> <!-- Barra de Vida -->
+                                <strong>Vida</strong>
+                                <div class="custom-bar-red">
+                                    <button onclick="alterarValor('vida_atual', -5)">&laquo;</button>
+                                    <button onclick="alterarValor('vida_atual', -1)">&lsaquo;</button>
+                                    <input id="vida_atual" class="input is-transparent is-small has-text-centered" type="number"
+                                           value="{{ ficha.vida_atual }}" oninput="atualizarFicha()">
+                                    <p>/</p>
+                                    <input class="input is-transparent is-small has-text-centered" type="number"
+                                           value="{{ ficha.calcularVida }}" readonly> 
+                                    <button onclick="alterarValor('vida_atual', 1)">&rsaquo;</button>
+                                    <button onclick="alterarValor('vida_atual', 5)">&raquo;</button>
+                                </div>
+                            </div>
+                        
+                            <div class="column has-text-centered"> <!-- Barra de Mana -->
+                                <strong>Mana</strong>
+                                <div class="custom-bar-blue">
+                                    <button onclick="alterarValor('mana_atual', -5)">&laquo;</button>
+                                    <button onclick="alterarValor('mana_atual', -1)">&lsaquo;</button>
+                                    <input id="mana_atual" class="input is-transparent is-small has-text-centered" type="number"
+                                           value="{{ ficha.mana_atual }}" oninput="atualizarFicha()">
+                                    <p>/</p>
+                                    <input class="input is-transparent is-small has-text-centered" type="number"
+                                           value="{{ ficha.calcularMana}}" readonly>
+                                    <button onclick="alterarValor('mana_atual', 1)">&rsaquo;</button>
+                                    <button onclick="alterarValor('mana_atual', 5)">&raquo;</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <script>
+                        function atualizarFicha() {
+                            let fichaId = "{{ ficha.id }}";  // Obtém o ID da ficha
+                            let vidaAtual = document.getElementById("vida_atual").value;
+                            let manaAtual = document.getElementById("mana_atual").value;
+                        
+                            fetch(`/ficha/${fichaId}/atualizar/`, {
+                                method: "POST",
+                                headers: {
+                                    "Content-Type": "application/json",
+                                    "X-CSRFToken": getCookie("csrftoken")  // Necessário para segurança
+                                },
+                                body: JSON.stringify({
+                                    vida_atual: vidaAtual,
+                                    mana_atual: manaAtual
+                                })
+                            }).then(response => response.json())
+                            .then(data => {
+                                if (data.status === "success") {
+                                    console.log("Ficha atualizada!");
+                                } else {
+                                    console.error("Erro ao atualizar:", data.message);
+                                }
+                            });
+                        }
+                        
+                        // Função para modificar valores com os botões
+                        function alterarValor(campo, valor) {
+                            let input = document.getElementById(campo);
+                            input.value = Math.max(-500, parseInt(input.value) + valor); // Garante que não fique negativo
+                            atualizarFicha(); // Atualiza automaticamente
+                        }
+                        
+                        // Função para obter o token CSRF
+                        function getCookie(name) {
+                            let cookieValue = null;
+                            if (document.cookie && document.cookie !== "") {
+                                let cookies = document.cookie.split(";");
+                                for (let i = 0; i < cookies.length; i++) {
+                                    let cookie = cookies[i].trim();
+                                    if (cookie.startsWith(name + "=")) {
+                                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                                        break;
+                                    }
+                                }
+                            }
+                            return cookieValue;
+                        }
+                        </script>
+                        
+
+                        
+                    </section>
+
+                    <hr>
+
+                    <section> <!--Classe de armadura, CD de magias, Proficiencias, deslocamento,tamanho-->
+                        <container class="level">
+                            <div class="level-left">
+                                <strong class="title is-6">Outros:</strong>
+                            </div>
+                        </container>
+
+                        <div class="container">
+                            <!-- CA e CD -->
+                            <div class="columns">
+                                <div class="column is-one-half has-text-centered"> <!--Classe de armadura-->
+                                    <div class="box">
+                                        <strong>CA</strong>
+                                        <input class="input is-large has-text-centered" type="number" id="ca" value="{{ ficha.ca }}">
+                                    </div>
+                                </div>
+
+                                <div class="column is-one-half has-text-centered"> <!--Classe de dificuldade de magias-->
+                                    <div class="box">
+                                        <strong>CD</strong>
+                                        <input class="input is-large has-text-centered" type="number" id="cd" value="{{ ficha.cd }}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Deslocamento e Tamanho -->
+                            <div class="columns">
+                                <div class="column is-half">
+                                    <strong>Deslocamento</strong>
+                                    <input class="input is-small" type="text" id="deslocamento" value="{{ ficha.deslocamento }}">
+                                </div>
+                                <div class="column is-half">
+                                    <strong>Tamanho</strong>
+                                    <input class="input is-small" type="text" id="tamanho" value="{{ ficha.tamanho }}">
+                                </div>
+                            </div>
+                            
+                            <div class="columns"> <!--Proficiências-->
+                                <div class="column is-full">
+                                    <strong>Proficiencias</Strong>
+                                    <textarea class="textarea is-small" 
+                                        type="text" name="proficiencias" 
+                                        placeholder="Proficiências do personagem..." readonly>
+                                            {%if ficha.classes.all%}
+
+                                                {%for classe in ficha.classes.all%}
+
+                                                    {{ classe.proficiencia }}{% if not forloop.last %},{% endif %}
+
+                                                {%endfor%}
+
+                                            {%endif%}
+                                        </textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </article>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript para salvar automaticamente -->
+<script>
+    // Função para salvar as alterações
+    function salvarCampo(campo, valor) {
+        fetch(`/atualizar_outros/{{ ficha.id }}/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify({
+                [campo]: valor
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status !== 'success') {
+                alert('Erro ao salvar alterações.');
+            }
+        });
+    }
+
+    // Adiciona eventos para salvar automaticamente
+    document.getElementById('ca').addEventListener('change', function() {
+        salvarCampo('ca', this.value);
+    });
+
+    document.getElementById('cd').addEventListener('change', function() {
+        salvarCampo('cd', this.value);
+    });
+
+    document.getElementById('deslocamento').addEventListener('change', function() {
+        salvarCampo('deslocamento', this.value);
+    });
+
+    document.getElementById('tamanho').addEventListener('change', function() {
+        salvarCampo('tamanho', this.value);
+    });
+</script>
+
+    <div class="column is-one-quarter"> <!--Perícias-->
+        <div class="conteiner">  
+            <div class="box"> <!--Fortitude, Reflexos, Vontade-->
+                <section>
+                    <container class="level">
+                        <div class="level-left">
+                            <strong class="title is-5">Resistências:</strong>
+                        </div>
+                    </container>
+    
+                    <ul>
+                        {% for pericia_treinada in ficha.periciatreinada_set.all|dictsort:"pericia.nome" %}
+                            {% if pericia_treinada.pericia.nome in 'for ref von' %}
+                            <li>
+                                <article class="box">
+                                    <div class="level">
+                                        <div class="level-left">
+                                            <span><strong>{{ pericia_treinada.pericia.get_nome_display }}</strong></span>
+                                        </div>
+                                        <div class="level-item">
+                                            <!-- Campo de valor (calculado) -->
+                                            <input class="input is-small has-text-centered pericia-bonus" type="number"
+                                                value="{{ pericia_treinada.calcularValor }}" style="width: 50px;" readonly id="valor_pericia_{{ pericia_treinada.id }}">
+                
+                                            <!-- Campo de bônus adicional -->
+                                            <input class="input is-small has-text-centered bonus" type="number" 
+                                                value="{{ pericia_treinada.bonus_adicional }}" style="width: 50px;" 
+                                                id="bonus_{{ pericia_treinada.id }}" 
+                                                onchange="atualizarBonus({{ pericia_treinada.id }}, this.value)">
+                
+                                            <!-- Atributo chave -->
+                                            <select class="input is-small" id="atributo_chave_{{ pericia_treinada.id }}" 
+                                                onchange="atualizarAtributoChave({{ pericia_treinada.id }}, this.value)">
+                                                <option value="for" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'for' %}selected{% endif %}>For</option>
+                                                <option value="des" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'des' %}selected{% endif %}>Des</option>
+                                                <option value="car" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'con' %}selected{% endif %}>Con</option>
+                                                <option value="int" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'int' %}selected{% endif %}>Int</option>
+                                                <option value="sab" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'sab' %}selected{% endif %}>Sab</option>
+                                                <option value="car" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'car' %}selected{% endif %}>Car</option>
+                                            </select>                                                
+                                        </div>
+                                        <div class="level-right">
+                                            <label class="checkbox">
+                                                <input type="checkbox" class="pericia-treinada"
+                                                    data-pericia-id="{{ pericia_treinada.id }}"
+                                                    {% if pericia_treinada.treinado %}checked{% endif %}
+                                                    onchange="atualizarTreinamento({{ pericia_treinada.id }}, this.checked)">
+                                            </label>
+                                        </div>
+                                    </div>
+                                </article>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    
+        <div class="container mt-5"> <!-- Lista de perícias -->
+            <div class="box">
+                <section>
+                    <container class="level">
+                        <div class="level-left">
+                            <strong class="title is-5">Perícias:</strong>
+                        </div>
+                    </container>
+                    <ul>
+                        {% for pericia_treinada in ficha.periciatreinada_set.all|dictsort:"pericia.nome" %}
+                            {% if pericia_treinada.pericia.nome not in 'for ref von' %}
+                                <li>
+                                    <article class="box">
+                                        <div class="level">
+                                            <div class="level-left">
+                                                <span><strong>{{ pericia_treinada.pericia.get_nome_display }}</strong></span>
+                                            </div>
+                                            <div class="level-item">
+                                                <!-- Campo de valor (calculado) -->
+                                                <input class="input is-small has-text-centered pericia-bonus" type="number"
+                                                    value="{{ pericia_treinada.calcularValor }}" style="width: 50px;" readonly id="valor_pericia_{{ pericia_treinada.id }}">
+                    
+                                                <!-- Campo de bônus adicional -->
+                                                <input class="input is-small has-text-centered bonus" type="number" 
+                                                    value="{{ pericia_treinada.bonus_adicional }}" style="width: 50px;" 
+                                                    id="bonus_{{ pericia_treinada.id }}" 
+                                                    onchange="atualizarBonus({{ pericia_treinada.id }}, this.value)">
+                    
+                                                <!-- Atributo chave -->
+                                                <select class="input is-small" id="atributo_chave_{{ pericia_treinada.id }}" 
+                                                    onchange="atualizarAtributoChave({{ pericia_treinada.id }}, this.value)">
+                                                    <option value="for" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'for' %}selected{% endif %}>For</option>
+                                                    <option value="des" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'des' %}selected{% endif %}>Des</option>
+                                                    <option value="car" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'car' %}selected{% endif %}>Car</option>
+                                                    <option value="int" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'int' %}selected{% endif %}>Int</option>
+                                                    <option value="sab" {% if pericia_treinada.atributo_chave.first.atributo.nome == 'sab' %}selected{% endif %}>Sab</option>
+                                                </select>                                                
+                                            </div>
+                                            <div class="level-right">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" class="pericia-treinada"
+                                                        data-pericia-id="{{ pericia_treinada.id }}"
+                                                        {% if pericia_treinada.treinado %}checked{% endif %}
+                                                        onchange="atualizarTreinamento({{ pericia_treinada.id }}, this.checked)">
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </article>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </section>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function atualizarBonus(periciaId, bonus) {
+            fetch(`/atualizar_bonus/${periciaId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ bonus: bonus })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById(`valor_pericia_${periciaId}`).value = data.valor;
+                }
+            });
+        }
+    
+        function atualizarAtributoChave(periciaId, atributoNome) {
+            fetch(`/atualizar_atributo_chave/${periciaId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ atributo: atributoNome })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById(`valor_pericia_${periciaId}`).value = data.valor;
+                }
+            });
+        }
+    
+        function atualizarTreinamento(periciaId, treinado) {
+            fetch(`/atualizar_treinamento/${periciaId}/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({ treinado: treinado })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    document.getElementById(`valor_pericia_${periciaId}`).value = data.valor;
+                }
+            });
+        }
+    </script>
+    
+    
+
+    <div class="column"> <!--Abas-->
+        <div class="conteiner">
+            <div class="box"> 
+                <section> <!--Barra de rolar dado e navegação de abas-->
+                    
+                    <!--Barra de rolar dado:-->
+                    <!--
+                    <h1 class="title is-5">Rolar dados:</h1>
+                    <div class="field has-addons mt-5">  
+                        <div class="control is-expanded">
+                            <input class="input" type="text" placeholder="1d6, 1d20+3, 2d8...">
+                        </div>
+                        <div class="control">
+                            <button class="button is-light">
+                                <span class="icon is-small">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                </span>
+                                <span>Rolar dado</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <hr>
+                    -->
+                    
+                    <nav class="navbar" role="navigation" aria-label="main navigation"> <!--Barra de navegação entre abas da ficha-->
+                        {% block navbar_combate%} 
+                            <a class="button is-white" href="{% url 'ficha_combate' ficha.id %}"> <!--class="button is-white is-active"-->
+                                Combate
+                            </a>
+                        {%endblock%}
+                        
+                        {% block navbar_habilidades%} 
+                            <a class="button is-white" href="{% url 'ficha_habilidades' ficha.id%}">
+                                Habilidades
+                            </a>
+                        {%endblock%}
+                        
+                        {% block navbar_magias%} 
+                            <a class="button is-white" disabled>
+                                Magias
+                            </a>
+                        {%endblock%}
+                            
+                        {% block navbar_equipamentos%} 
+                            <a class="button is-white" disabled>
+                                Equipamentos
+                            </a>
+                        {%endblock%}
+                        
+                        {% block navbar_descricao%}
+                            <a class="button is-white" disabled>
+                                Descrição
+                            </a>
+                        {%endblock%}
+                        
+                    </nav>
+                </section>
+
+                <hr>
+
+                <section>
+                    {% block aba_conteudo %} {% endblock %}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+{%endblock%}

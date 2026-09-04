@@ -1,0 +1,97 @@
+{% extends "ficha/base.html" %}
+
+{% block navbar_habilidades%} 
+    <a class="button is-white is-hovered" href="{% url 'ficha_habilidades' ficha.id%}">
+        Habilidades
+    </a>
+{%endblock%}
+
+{% block aba_conteudo %} 
+    <!--Barra de pesquisa-->
+    <container>
+        <form method="get" action="{% url 'ficha_habilidades' ficha.id %}">
+            <div class="field has-addons mt-5">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="q" placeholder="Digite aqui o nome da habilidade..." value="{{ query }}">
+                </div>
+                <div class="control">
+                    <button class="button is-light">
+                        <span>Buscar habilidade</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+            
+        <div class="is-flex is-justify-content-flex-end">
+            <div class="buttons">
+                <a class="button is-dark is-small" href="{% url 'add_habilidade' ficha.id %}" style="margin-top: 20px;">Adicionar habilidade</a>
+            </div>
+        </div>
+        
+    </container>
+
+    <!-- Habilidades -->
+    {% if habilidades %}
+        <h3 class="title is-6" style="margin-top: 20px;">Habilidades:</h3>
+
+        <section>
+            <ul>
+                {% for habilidade in habilidades %}
+                    <li>
+                        <section class="mt-5"> <!--Uma habilidade-->
+                            <div class="box is-flex is-flex-direction-column" style="height: 100%;"> 
+                                <div class="content" style="flex-grow: 1;">
+                                    <div class="is-flex is-align-items-center mb-2">
+                                        <h3 class="title is-5 m-0">{{habilidade.nome}}</h3>
+                                        <p class="ml-2 m-0">
+                                            {% if habilidade.ativo %}
+                                                <i>(Ativa)</i>
+                                            {% else %}
+                                                <i>(Passiva)</i>
+                                            {% endif %}
+                                        </p>
+                                    </div>
+                                
+                                    <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                        <li><strong class="title is-6">Origem da habilidade:</strong> {{habilidade.get_origem_display}}
+                                            {% if habilidade.raca_pers %}
+                                                ({{habilidade.raca_pers.nome}})
+                                            {% endif %}
+                                            {% if habilidade.origem_pers %}
+                                                ({{habilidade.origem_pers.nome}})
+                                            {% endif %}
+                                            {% if habilidade.classe_pers %}
+                                                ({{habilidade.classe_pers.nome}} {{habilidade.nivel_habilidade}})
+                                            {% endif %}
+                                        </li>
+                                        <li><strong class="title is-6">Descrição: </strong></li>
+                                    </ul>
+                                    <p>{{habilidade.descricao}}</p>
+                                </div>
+                                
+                                <div class = "level">
+                                    <div class = "level-left"> <!-- Botão para remover a habilidade -->
+                                        <form method="POST" action="{% url 'remove_habilidade' ficha.id %}">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="habilidade_id" value="{{ habilidade.id }}">
+                                            <button class="button is-small is-danger is-dark" type="submit">
+                                                <span>Remover habilidade</span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+
+                            </div>
+                            
+                        </section>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+        <p class="title is-6" style="margin-top: 20px;">Nenhuma habilidade encontrada.</p>
+    {% endif %}
+
+
+{% endblock %}
+

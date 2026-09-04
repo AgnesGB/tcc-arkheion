@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <title>Login</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <style>
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.5); /* Adiciona um escurecimento para melhorar a visibilidade do formulário */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .login-container {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+<div class="overlay"></div>
+
+<div class="is-flex is-justify-content-center is-align-items-center" style="height: 100vh;">
+    <div class="box login-container" style="max-width: 400px; width: 100%; padding: 2rem; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); background-color: white;">
+        
+        <h2 class="title is-4 has-text-centered">Login</h2>
+
+        {% if form.errors %}
+            <div class="notification is-danger">
+                <p>Usuário ou senha incorretos. Tente novamente.</p>
+            </div>
+        {% endif %}
+
+        <form method="post">
+            {% csrf_token %}
+
+            {% for field in form %}
+                <div class="field">
+                    <label class="label">{{ field.label }}</label>
+                    <div class="control">
+                        {{ field }}
+                    </div>
+                    {% if field.errors %}
+                        <p class="help is-danger">{{ field.errors.0 }}</p>
+                    {% endif %}
+                </div>
+            {% endfor %}
+
+            <div class="control">
+                <button type="submit" class="button is-primary is-fullwidth" 
+                    style="margin-top: 1rem; color: rgb(255, 255, 255); background-color: rgb(0, 0, 0);">
+                    Entrar
+                </button>
+            </div>
+        </form>
+
+        <div class="has-text-centered mt-3" style="margin-top: 1rem;">
+            <a href="{% url 'password_reset' %}" class="is-size-7">Esqueci minha senha</a>
+        </div>
+
+        <!-- Botão adicional para cadastro -->
+        <div class="has-text-centered" style="margin-top: 1rem;">
+            <a href="{% url 'register' %}" class="button is-dark is-fullwidth">Registrar</a>
+        </div>
+        <br>
+        <div>
+            <a href="{% url 'index' %}" class="button is-primary">Voltar</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

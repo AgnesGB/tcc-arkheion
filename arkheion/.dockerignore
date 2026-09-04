@@ -1,0 +1,12 @@
+# Ignora o cache do Python
+__pycache__/
+
+# Ignora o banco de dados local (não deve ir para a imagem)
+db.sqlite3
+
+# Ignora arquivos do Git
+.git
+.gitignore
+
+# Ignora arquivos de ambiente local
+.env

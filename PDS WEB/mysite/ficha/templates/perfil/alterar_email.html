@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'favicon.png' %}">
+    <title>Alterar E-mail</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+</head>
+<body class="has-background-light">
+    <section class="hero is-light is-fullheight">
+        <div class="hero-body">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="column is-two-thirds">
+                        <div class="box">
+                            <h2 class="title has-text-centered">Alterar E-mail</h2>
+
+                            <!-- Exibe mensagens de sucesso/erro -->
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="notification is-{{ message.tags }}">
+                                        {{ message }}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+
+                            <form method="post">
+                                {% csrf_token %}
+                                <div class="field">
+                                    <label class="label">Novo E-mail</label>
+                                    <div class="control">
+                                        <input class="input" type="email" name="email" value="{{ user.email }}" required>
+                                    </div>
+                                </div>
+
+                                <div class="buttons is-centered">
+                                    <button type="submit" class="button is-dark">Salvar</button>
+                                    <a href="{% url 'visualizar_perfil' %}" class="button is-light">Cancelar</a>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

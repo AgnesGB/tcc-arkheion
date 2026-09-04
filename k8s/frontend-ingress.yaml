@@ -1,0 +1,49 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  labels:
+    app: frontend
+  annotations:
+    # Traefik é o Ingress Controller padrão do k3s
+    kubernetes.io/ingress.class: traefik
+    # Opcional: Redirecionar HTTP para HTTPS
+    # traefik.ingress.kubernetes.io/redirect-entry-point: https
+spec:
+  rules:
+  - host: arkheion.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80
+  # Opcional: Configuração de TLS/SSL
+  # tls:
+  # - hosts:
+  #   - arkheion.local
+  #   secretName: arkheion-tls
+---
+# Ingress alternativo para acesso via IP (sem hostname)
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: frontend-ingress-ip
+  labels:
+    app: frontend
+  annotations:
+    kubernetes.io/ingress.class: traefik
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: frontend
+            port:
+              number: 80

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Arkheion - Descrição</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+    <style>
+        .custom-bar-red {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: pink;
+          border-radius: 5px;
+          padding: 5px;
+        }
+        .custom-bar-red strong {
+          color: black;
+          font-weight: bold;
+        }
+        .custom-bar-red button {
+          background: transparent;
+          border: none;
+          font-size: 1.2em;
+          color: black;
+          margin: 0 5px;
+        }
+        .custom-bar-red button:hover {
+          cursor: pointer;
+          color: #363636;
+        }
+        .custom-bar-green {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightgreen;
+            border-radius: 5px;
+            padding: 5px;
+          }
+          .custom-bar-green strong {
+            color: black;
+            font-weight: bold;
+          }
+          .custom-bar-green button {
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: black;
+            margin: 0 5px;
+          }
+          .custom-bar-green button:hover {
+            cursor: pointer;
+            color: #363636;
+          }
+        .custom-bar-blue {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: lightblue;
+            border-radius: 5px;
+            padding: 5px;
+          }
+          .custom-bar-blue strong {
+            color: black;
+            font-weight: bold;
+          }
+          .custom-bar-blue button {
+            background: transparent;
+            border: none;
+            font-size: 1.2em;
+            color: black;
+            margin: 0 5px;
+          }
+          .custom-bar-blue button:hover {
+            cursor: pointer;
+            color: #363636;
+          }
+          .input.is-transparent {
+            background-color: transparent;
+            border: none;
+            box-shadow: none;
+            color: black; /* Cor do texto dentro do input */
+          }
+          .input.is-transparent:focus {
+            border-bottom: 2px solid #00d1b2; /* Cor ao focar */
+            outline: none; /* Remove a borda padrão */
+          }
+      </style>
+</head>
+<body>
+    <header> <!--Barra superior-->
+        <nav class="navbar is-light" role="navigation" aria-label="main navigation"> 
+            <div class="navbar-brand"> <!--Título Arkheion, botão para página index-->
+                <a class="navbar-item" href="index.html">
+                  <strong>Arkheion</strong>
+                </a>
+            </div>
+
+            <div class="navbar-menu">
+                <div class="navbar-start"> <!--Botão nav para a aba de personagens-->
+                    <div class="navbar-item">
+                        <div class="buttons">
+                            <a class="button is-light" href="personagens.html">
+                                Personagens
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="navbar-item"> <!--Botão nav para a aba de regras-->
+                        <div class="buttons">
+                            <a class="button is-light" href="index.html"> <!--href provisório-->
+                                Regras
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="navbar-end"> <!--Botão nav para a aba de usuário-->
+                <div class="navbar-item">
+                    <a class="button is-light" href="personagens.html"> <!--href provisório-->
+                        <span class="icon is-large">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>account-circle</title><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z" /></svg>
+                        </span>
+                        <span>Usuário</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </header>
+    
+    <section> <!--Conteúdo da aba personagens-->
+        <div class="container mt-5">
+            <div class="columns">
+                    <div class="column is-one-third"> <!--Informações gerais-->
+                        <div class="container">
+                            <div class="box"> 
+                                <article>
+                                    <section> <!--Foto e Informações base-->
+                                        <div class="columns">
+                                            <div class="column is-half"> <!--imagem do personagem-->
+                                                <img src="https://bulma.io/assets/images/placeholders/128x128.png" alt="No picture" /><!--imagem do personagem--> 
+                                            </div>
+
+                                            <div class="column is-half"> <!--Nome, Origem, Classe, Nível, Raça e deus do personagem-->
+                                                <div class="content">
+                                                    <div class="level">
+                                                        <div class="level-item">
+                                                            <strong class="title is-5">Lorem Ipsum</strong> <!--nome do personagem-->
+                                                        </div>
+                                                        <!--botão de editar-->
+                                                        <div class="level-item">
+                                                            <button>
+                                                                <span class="icon">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>pencil</title><path d="M20.71,7.04C21.1,6.65 21.1,6 20.71,5.63L18.37,3.29C18,2.9 17.35,2.9 16.96,3.29L15.12,5.12L18.87,8.87M3,17.25V21H6.75L17.81,9.93L14.06,6.18L3,17.25Z" /></svg>
+                                                                </span>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <ul>
+                                                    <li><strong>Raça: </strong> Loren Ipsum</li>
+                                                    <li><strong>Origem: </strong> Loren Ipsum</li>
+                                                    <li><strong>Classe: </strong> Paladino 3</li> <!--classe(s) e nível-->
+                                                    <li><strong>Divindade: </strong> Loren Ipsum</li>
+                                                </ul>
+                                                
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <hr>
+
+                                    <section> <!--Atributos-->
+                                        <div class="container">
+                                            <strong class="title is-5">Atributos:</strong>
+                                            <div class="columns is-multiline is-centered is-variable is-3">
+
+                                                <!--FOR-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>FOR</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                       
+                                                    </div>
+                                                </div>
+
+                                                <!--DES-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>DES</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <!--CON-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>CON</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <!--INT-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>INT</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <!--SAB-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>SAB</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                        
+                                                    </div>
+                                                </div>
+
+                                                <!--CHA-->
+                                                <div class="column is-one-third has-text-centered">
+                                                    <div class="box">
+                                                        <button class="button is-light is-small">
+                                                            <span class="icon is-small">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                            </span>
+                                                            <span><strong>CHA</strong></span>
+                                                        </button>
+                                                        <input class="input has-text-centered" type="number" value="3"> <!--Modificador do atributo-->
+                                                        
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                    <hr>
+
+                                    <section> <!--Barras de vida e mana-->
+                                        <div class="container">
+                                            <div class="column has-text-centered "> <!--Barra de vida-->
+                                                <strong>Vida</strong>
+                                                <div class="custom-bar-red">
+                                                    <button>&laquo;</button>
+                                                    <button>&lsaquo;</button>
+                                                    <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                    <p>/</p>
+                                                    <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                    <button>&rsaquo;</button>
+                                                    <button>&raquo;</button>
+                                                </div>
+                                            </div>
+
+                                            <div class="column has-text-centered "> <!--Barra de mana-->
+                                                <strong>Mana</strong>
+                                                <div class="custom-bar-blue">
+                                                    <button>&laquo;</button>
+                                                    <button>&lsaquo;</button>
+                                                    <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                    <p>/</p>
+                                                    <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                    <button>&rsaquo;</button>
+                                                    <button>&raquo;</button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        
+                                    </section>
+
+                                    <hr>
+
+                                    <section> <!--Classe de armadura, CD de magias, Proficiencias, deslocamento,tamanho e experiência-->
+                                        <div class="container">
+                                            <div class="columns">
+                                                <div class="column is-one-third has-text-centered"> <!--Classe de armadura-->
+                                                    <div class="box">
+                                                        <strong>CA</strong>
+                                                        <input class="input is-large has-text-centered" type="number" value="20"> <!--Valor da classe de armadura-->
+                                                    </div>
+                                                </div>
+
+                                                <div class="column is-one-third has-text-centered"> <!--Classe de armadura-->
+                                                    <div class="box">
+                                                        <strong>CD</strong>
+                                                        <input class="input is-large has-text-centered" type="number" value="20"> <!--Valor da classe de armadura-->
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="columns"> <!--Deslocamento e Tamanho-->
+                                                <div class="column is-half">
+                                                    <strong>Deslocamento</Strong>
+                                                    <input class="input is-small" type="text" placeholder="9 metros...">
+                                                </div>
+                                                <div class="column is-half">
+                                                    <strong>Tamanho</Strong>
+                                                    <input class="input is-small" type="text" placeholder="Pequeno, médio...">
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="columns"> <!--Proficiências-->
+                                                <div class="column is-full">
+                                                    <strong>Proficiencias</Strong>
+                                                    <input class="input is-small" type="text" placeholder="Proficiências do personagem...">
+                                                </div>
+                                            </div>
+                                            
+
+                                            <div class="container"> <!--Barra de experiência-->
+                                                <div class="column has-text-centered ">
+                                                    <strong>Experiência</strong>
+                                                    <div class="custom-bar-green">
+                                                        <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                        <p>/</p>
+                                                        <input class="input is-transparent is-small has-text-centered" type="number" value="33">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column is-one-fifth"> <!--Perícias-->
+                        <div class="conteiner">  
+                            <div class="box"> <!--Fortitude, Reflexos, Vontade-->
+                                <section>
+                                    <strong class="title is-5">Resistências:</strong>
+                                         <!--Fortitude-->
+                                            
+                                                <button class="button is-light is-small">
+                                                    <span class="icon is-small">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                    </span>
+                                                    <span><strong>Fortitude</strong></span>
+                                                    <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                </button>
+                                                
+                                            
+                                        
+                                        <!--Reflexos-->
+                                            
+                                                <button class="button mt-2 is-light is-small">
+                                                    <span class="icon is-small">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                    </span>
+                                                    <span><strong>Reflexos</strong></span>
+                                                    <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de reflexos-->
+                                                </button>
+                                                
+                                            
+                                        
+                                        <!--Vontade-->
+                                            
+                                                <button class="button mt-2 is-light is-small">
+                                                    <span class="icon is-small">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                    </span>
+                                                    <span><strong>Vontade</strong></span>
+                                                    <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de vontade-->
+                                                </button>
+                                                
+                                            
+                                        
+                                    
+                                </section>
+                            </div>
+                        </div>
+
+                        <div class="container mt-5"> <!--Lista de perícias-->
+                            <div class="box">
+                                <section>
+                                    <strong class="title is-5">Perícias:</strong>
+                                    <ul>
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Acrobacia</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Adestramento</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Atletismo</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Atuação</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Cavalgar</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Conhecimento</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Cura</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Diplomacia</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Enganação</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Fortitude</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Furtividade</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Guerra</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Iniciativa</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Intimidação</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Intuição</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Investigação</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Jogatina</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Ladinagem</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Luta</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Misticismo</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Nobreza</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Ofício (1)</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Ofício (2)</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Percepção</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Pilotagem</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Pontaria</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Reflexos</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Religião</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Sobrevivência</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+
+                                        <li>
+                                            <button class="button is-light is-small">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span><strong>Vontade</strong></span>
+                                                <input class="input is-small has-text-centered" type="number" value="3"> <!--Valor de fortitude-->
+                                                <label class="checkbox">
+                                                    <input type="checkbox" />
+                                                </label>
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="column"> <!--Abas (Descrição)-->
+                        <div class="conteiner">
+                            <div class="box"> 
+                                <section>
+                                    <h1 class="title is-5">Rolar dados:</h1>
+                                    <div class="field has-addons mt-5"> <!--Barra de rolar dado-->
+                                        <div class="control is-expanded">
+                                            <input class="input" type="text" placeholder="1d6, 1d20+3, 2d8...">
+                                        </div>
+                                        <div class="control">
+                                            <button class="button is-light">
+                                                <span class="icon is-small">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>dice-d20</title><path d="M20.47 6.62L12.57 2.18C12.41 2.06 12.21 2 12 2S11.59 2.06 11.43 2.18L3.53 6.62C3.21 6.79 3 7.12 3 7.5V16.5C3 16.88 3.21 17.21 3.53 17.38L11.43 21.82C11.59 21.94 11.79 22 12 22S12.41 21.94 12.57 21.82L20.47 17.38C20.79 17.21 21 16.88 21 16.5V7.5C21 7.12 20.79 6.79 20.47 6.62M11.45 15.96L6.31 15.93V14.91C6.31 14.91 9.74 11.58 9.75 10.57C9.75 9.33 8.73 9.46 8.73 9.46S7.75 9.5 7.64 10.71L6.14 10.76C6.14 10.76 6.18 8.26 8.83 8.26C11.2 8.26 11.23 10.04 11.23 10.5C11.23 12.18 8.15 14.77 8.15 14.77L11.45 14.76V15.96M17.5 13.5C17.5 14.9 16.35 16.05 14.93 16.05C13.5 16.05 12.36 14.9 12.36 13.5V10.84C12.36 9.42 13.5 8.27 14.93 8.27S17.5 9.42 17.5 10.84V13.5M16 10.77V13.53C16 14.12 15.5 14.6 14.92 14.6C14.34 14.6 13.86 14.12 13.86 13.53V10.77C13.86 10.18 14.34 9.71 14.92 9.71C15.5 9.71 16 10.18 16 10.77Z" /></svg>
+                                                </span>
+                                                <span>Rolar dado</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                    <nav class="navbar" role="navigation" aria-label="main navigation"> <!--Barra de navegação entre abas da ficha-->
+                                        <a class="button is-white" href="ficha_combate.html">
+                                            Combate
+                                        </a>
+                                        <a class="button is-white" href="ficha_habilidades.html">
+                                            Habilidades
+                                        </a>
+                                        <a class="button is-white" href="ficha_magias.html">
+                                            Magias
+                                        </a>
+                                        <a class="button is-white" href="ficha_equipamentos.html">
+                                            Equipamentos
+                                        </a>
+                                        <a class="button is-white is-active" href="ficha_descricao.html">
+                                            Descrição
+                                        </a>
+                                    </nav>
+                                </section>
+
+                                <hr>
+
+                                <section> <!--Descrição conteúdo-->
+                                    <h1 class="title is-4">Descrição:</h1>
+
+                                    <div class="columns">
+                                        <div class="column is-full">
+                                            <p class="subtitle is-5">Anotações</p>
+                                            <textarea class="textarea" rows="3" placeholder="Anotações da mesa, detalhes do personagem, etc..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-full">
+                                            <p class="subtitle is-5">Aparência</p>
+                                            <textarea class="textarea" rows="3" placeholder="Nome, gênero, idade, descrição física..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-full">
+                                            <p class="subtitle is-5">Personalidade</p>
+                                            <textarea class="textarea" rows="3" placeholder="Traços marcantes, opiniões, ideais..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-full">
+                                            <p class="subtitle is-5">Histórico</p>
+                                            <textarea class="textarea" rows="3" placeholder="O passado do personagem, quem era antes de entrar na aventrura..."></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="columns">
+                                        <div class="column is-full">
+                                            <p class="subtitle is-5">Objetivos</p>
+                                            <textarea class="textarea" rows="3" placeholder="As ambições do personagem, o que o personagem almeja..."></textarea>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

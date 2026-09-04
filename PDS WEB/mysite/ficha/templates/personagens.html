@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}Arkheion - Personagens{% endblock %}
+
+{%block conteudo%} 
+    <div class="block">
+        <div class="level"> <!--Título e botão criar personagem-->
+            <div class="level-left"> <!--Título-->
+                <h1 class="title is-4">Meus personagens:</h1> 
+            </div>
+            <div class="level-right"> <!--Botão criar personagem-->
+                <div class="buttons" >
+                    <a class="button is-dark" href="{% url 'criar_ficha' %}">Criar personagem</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+
+        <form method="GET" action="{% url 'personagens' %}"> <!--Barra de pesquisa por nome da ficha-->
+            <div class="field has-addons mt-5">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="q" placeholder="Digite o nome de um personagem..." value="{{ query }}">
+                </div>
+                <div class="control">
+                    <button class="button is-dark" type="submit">Buscar</button>
+                </div>
+            </div>
+        </form>
+
+         <!--Personagens-->
+
+        {% if fichas %}
+
+        <div class="columns mt-5 is-multiline"> <!--Lista de personagens-->
+            
+            {% for ficha in fichas %}
+            
+            <div class="column is-one-third"> <!--Personagem-->
+                <div class="box"> 
+                    <article>
+                        <div class="media">
+                            <div class="media-content"> <!--Nome, Classe, Nível do personagem e mesa vinculada-->
+                                <div class="content">
+                                    <h2 class="title"> {{ ficha.nome }} </h2> <!-- Nome do personagem -->
+                                    <p>
+                                        {% if ficha.classes.all %}
+                                            {% for classe in ficha.classes.all %}
+                                                <strong>{{ classe.nome }}</strong>{% if not forloop.last %}, {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <strong>Sem classes associadas</strong>
+                                        {% endif %}
+                                        <strong>| Nível {{ ficha.nivel }}</strong> <!-- Classe e nível do personagem -->
+                                        <br>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="level">
+                            <div class="level-left"> <!--Botão excluir ficha-->
+                                <div class="buttons">
+                                    <form action="{% url 'ficha_delete' ficha.pk %}" method="post" onsubmit="return confirm('Tem certeza que deseja excluir esta ficha?');">
+                                        {% csrf_token %}
+                                        <button type="submit" class="button is-danger is-dark is-small">Excluir ficha</button>
+                                    </form>
+                                </div>
+                            </div>
+            
+                            <div class="level-right">
+                                <div class="buttons">
+                                    <a class="button is-dark is-small" href="{% url 'ficha_combate' ficha.id %}" >Acessar ficha</a>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+
+            {% endfor %}
+            
+        </div>
+
+        {% else %}
+
+            <p>Nenhum personagem encontrado... Crie um agora!</p>
+
+        {% endif %}
+        
+    </div>
+{%endblock%}

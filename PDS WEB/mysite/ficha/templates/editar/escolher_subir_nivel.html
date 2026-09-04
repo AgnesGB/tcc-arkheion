@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}Subir de Nível - Arkheion{% endblock %}
+
+{% block conteudo %}
+
+<!-- templates/editar/escolher_subir_nivel.html -->
+<div class="content">
+    <!-- Botão de voltar para a ficha de combate -->
+    <div class="level">
+        <div class="level-left">
+            <a href="{% url 'ficha_combate' ficha.id %}" class="button is-link">
+                Voltar para Ficha de Combate
+            </a>
+        </div>
+    </div>
+
+    <div class="level">
+        <div class="level-left">
+            <strong class="title is-5">
+                {{ ficha.nome }} - Nível {{ ficha.nivel }}
+            </strong>
+        </div>
+    </div>
+
+    <!-- Lista de classes para upar ou deletar -->
+    <div class="box">
+        <h2 class="subtitle">Escolha a Classe para Subir de Nível</h2>
+        <ul>
+            {% for nivel_classe in ficha.nivelclasseficha_set.all %}
+                <li>
+                    <div class="level">
+                        <div class="level-left">
+                            <span>{{ nivel_classe.classe.nome }} (Nível {{ nivel_classe.nivel }})</span>
+                        </div>
+                        <div class="level-right">
+                            <!-- Botão para subir nível da classe -->
+                            <form method="post" action="{% url 'subir_nivel_classe' ficha.id nivel_classe.classe.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="button is-primary is-small">
+                                    Subir Nível
+                                </button>
+                            </form>
+                            <!-- Botão para deletar a classe -->
+                            <form method="post" action="{% url 'deletar_classe' ficha.id nivel_classe.classe.id %}" style="display: inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="button is-danger is-small">
+                                    Deletar Classe
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Opção para adicionar uma nova classe -->
+    <div class="box">
+        <h2 class="subtitle">Adicionar uma Nova Classe</h2>
+        <form method="post" action="{% url 'adicionar_nova_classe' ficha.id %}">
+            {% csrf_token %}
+            <div class="field">
+                <label class="label">Selecione uma Classe</label>
+                <div class="control">
+                    <div class="select">
+                        <select name="classe_id" required>
+                            <option value="" disabled selected>Selecione uma classe</option>
+                            {% for classe in classes %}
+                                <option value="{{ classe.id }}">{{ classe.nome }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-info">
+                        Adicionar Classe
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{
+  "name": "Vue.js & TypeScript with Python",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-22-bookworm",
+  
+  "features": {
+    "ghcr.io/devcontainers/features/python:1": {
+        "version": "3.12"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
+
+  "forwardPorts": [5173, 8000],
+  
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode", 
+        "dbaeumer.vscode-eslint",
+        "Vue.official",
+        "ms-python.python",
+        "ms-python.flake8",
+        "ms-python.black-formatter",
+        "batisteo.vscode-django"
+      ],
+      "settings": {
+        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "editor.formatOnSave": true,
+        "[python]": {
+          "editor.defaultFormatter": "ms-python.black-formatter"
+        },
+        "editor.codeActionsOnSave": {
+          "source.organizeImports": "explicit"
+        }
+      }
+    }
+  },
+
+  "remoteEnv": {
+    "DJANGO_SETTINGS_MODULE": "arkheion.settings",
+    "PYTHONPATH": "${containerWorkspaceFolder}/arkheion"
+  },
+  
+  "postCreateCommand": "cd ${containerWorkspaceFolder}/frontend && npm install && cd ${containerWorkspaceFolder}/arkheion && pip3 install -r requirements.txt && python3 manage.py migrate",
+
+  "workspaceFolder": "/workspaces/${localWorkspaceFolderBasename}"
+}

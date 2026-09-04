@@ -1,0 +1,21 @@
+# Dockerfile (frontend)
+
+FROM node:22-alpine
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copia configs de dependências do diretório frontend
+COPY frontend/package*.json ./
+
+# Instala dependências
+RUN npm install
+
+# Copia o restante do código do diretório frontend
+COPY frontend/ .
+
+# Porta padrão do Vite
+EXPOSE 5173
+
+# Comando: sobe o servidor de dev do Vite acessível externamente
+CMD ["npm", "run", "dev", "--", "--host", "0.0.0.0", "--port", "5173"]

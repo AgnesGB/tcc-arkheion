@@ -1,0 +1,26 @@
+# Arquivo de configuração para definir as regras de cobertura de código
+
+[run]
+# Define que a fonte do código a ser analisado é a pasta 'backend'
+source = backend
+
+# Lista de arquivos/pastas para IGNORAR na análise
+omit =
+    */migrations/*
+    */admin.py
+    */apps.py
+    */filters.py
+    */forms.py
+    */views.py
+    */urls.py
+    */tests.py
+    manage.py
+    backend/__init__.py
+    backend/settings.py
+    backend/wsgi.py
+    backend/asgi.py
+    backend/tests/*
+
+[report]
+# Mostra linhas que faltaram ser testadas
+show_missing = True

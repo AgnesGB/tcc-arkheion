@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Arkheion{% endblock %}
+
+{%block conteudo%} 
+
+<div class="container">
+    {% load static %}
+    <img src="{% static 'logo.png' %}" alt="Logo">
+    <h1 class="title">Bem-vindo ao Arkheion!</h1><br>
+    <p class="subtitle">O Arkheion tem como finalidade descomplicar o processo de criação de fichas de personagens para o RPG mais jogado no Brasil: Tormenta 20.</p>
+    <hr>
+
+    <div class="buttons">
+        {% if user.is_authenticated %}
+            <p class="subtitle">Olá, {{ user.username }}, bom ver você por aqui!</p><br>
+            <a href="{% url 'personagens' %}" class="button is-primary">Ver Fichas</a>
+        
+            {% else %}
+            <p class="subtitle">Comece a gerenciar as suas fichas agora mesmo!</p><br>
+            <a class="button is-primary" href="{% url 'login' %}">
+                Entre
+            </a>
+            <p> ou    </p>
+            <a class="button is-light" href="{% url 'register' %}">
+                Registre-se
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{%endblock%}

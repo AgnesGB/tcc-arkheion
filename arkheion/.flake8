@@ -1,0 +1,26 @@
+[flake8]
+# Define o tamanho máximo da linha (88 é o padrão adotado pelo formatador Black)
+max-line-length = 88
+max-complexity = 20
+
+# Ignora ou estende as regras ignoradas para compatibilidade ou especificidade do projeto:
+# E203: Espaço em branco antes de ':' (incompatível com Black em slices)
+# W503: Quebra de linha antes de um operador binário (incompatível com Black)
+extend-ignore = E203, W503, E501
+
+# Lista de diretórios e arquivos que o Flake8 deve ignorar durante a verificação
+exclude = 
+    .git,
+    __pycache__,
+    .venv,
+    venv,
+    migrations,
+    build,
+    dist
+
+# Especifica quais as categorias de erros e avisos que o Flake8 deve checar
+# E: Erros pycodestyle
+# F: Erros Pyflakes
+# W: Avisos pycodestyle
+# C: Complexidade de código McCabe (se configurado)
+select = E,F,W,C

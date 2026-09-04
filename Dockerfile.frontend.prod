@@ -1,0 +1,32 @@
+# Dockerfile.prod (frontend)
+FROM node:22-alpine AS builder
+
+WORKDIR /app
+
+# NOTA: Não usamos mais VITE_BACKEND_URL em build-time
+# O frontend agora detecta a URL dinamicamente em runtime
+# usando window.location.hostname (ver src/utils/config.ts)
+
+# Copia configs de dependências do frontend
+COPY frontend/package*.json ./
+
+# Instala todas as dependências (incluindo devDependencies para o build)
+RUN npm ci
+
+# Copia o código do frontend
+COPY frontend/ .
+
+# Build para produção (sem type-check)
+RUN npm run build:prod
+
+# Estágio final - nginx servindo os arquivos estáticos
+FROM nginx:alpine
+WORKDIR /usr/share/nginx/html
+# Remove arquivos padrão do nginx
+RUN rm -rf ./*
+# Copia os arquivos buildados
+COPY --from=builder /app/dist .
+# Expõe porta 80
+EXPOSE 80
+# Nginx roda em foreground por padrão
+CMD ["nginx", "-g", "daemon off;"]

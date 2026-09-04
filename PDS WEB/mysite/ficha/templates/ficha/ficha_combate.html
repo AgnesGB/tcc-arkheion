@@ -1,0 +1,79 @@
+{% extends "ficha/base.html" %}
+
+{% block navbar_combate%} 
+    <a class="button is-white is-hovered" href="{% url 'ficha_combate' ficha.id %}"> <!--class="button is-white is-active"-->
+        Combate
+    </a>
+{%endblock%}
+
+{% block aba_conteudo %} 
+
+    <!--barra de pesquisa-->
+    <container>
+        <form method="get" action="{% url 'ficha_combate' ficha.id %}">
+            <div class="field has-addons mt-5">
+                <div class="control is-expanded">
+                    <input class="input" type="text" name="q" placeholder="Digite aqui o nome do ataque..." value="{{ query }}">
+                </div>
+                <div class="control">
+                    <button class="button is-light">
+                        <span>Buscar ataque</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+
+        <div class="is-flex is-justify-content-flex-end">
+            <div class="buttons">
+                <a class="button is-dark is-small" style="margin-top: 20px;">Novo ataque</a>
+            </div>
+        </div>
+
+    </container>
+
+    
+
+    <!-- Exibindo os ataques -->
+    {% if ataques %}
+        <h3 class="title is-6" style="margin-top: 20px;">Ataques encontrados:</h3>
+
+        <section>
+            <ul>
+                {% for ataque in ataques %}
+                    <li>
+                        <section> <!--Um ataque-->
+                            <div class="content mt-5">
+                                <div class="box">
+                                    <h3 class="title is-5">{{ataque.nome}}</h3>  
+
+                                    <ul style="list-style-type: none; padding: 0; margin: 0;">
+                                        <li><strong class="title is-6">Perícia:</strong> {{ataque.pericia}}</li>
+                                        <li><strong class="title is-6">Dano:</strong> {{ataque.dano}} {{ ataque.get_tipo_dano_display }}</li>
+                                    </ul>
+                                     
+                                    <div class="level" style="margin-top: 20px;"> <!--botões de rolagem e mostrar descrição do item-->
+                                        <div class="level-left"> <!--mostrar descrição-->
+                                            <button class="button is-small is-danger is-dark">
+                                                <span>Excluir ataque</span>
+                                            </button>
+                                        </div>
+
+                                        <div class="level-right"> <!--mostrar descrição-->
+                                            <button class="button is-small is-light">
+                                                <span>Mostrar descrição</span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% else %}
+        <p class="title is-6" style="margin-top: 20px;">Nenhum ataque encontrado.</p>
+    {% endif %}
+
+{% endblock %}
+
